@@ -16,10 +16,10 @@ public class Preferences {
 	@Column(name="id")
 	private Long mId;
 	
-	@Column(name="postOnFBTimeline")
+	@Column(name="post_on_fb_timeline")
     private boolean mPostOnFBTimeline;
     
-	@Column(name="sendEmail")
+	@Column(name="send_email")
     private boolean mSendEmail;
 	
 	@OneToOne

@@ -2,7 +2,7 @@ CREATE TABLE `Preferences` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `post_on_fb_timeline` BIT(1) NULL DEFAULT NULL ,
   `send_email` BIT(1) NULL DEFAULT NULL ,
-  `user_fkey` INT UNSIGNED NOT NULL,
+  `user_fkey` BIGINT(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
   )
 ENGINE = InnoDB;
