@@ -7,8 +7,8 @@ CREATE TABLE `Preferences` (
   )
 ENGINE = InnoDB;
 
-ALTER TABLE 
-	Preferences 
-ADD CONSTRAINT 
-	fk_preferences_user_connection
-		FOREIGN KEY (user_fkey) REFERENCES UserConnection(id);
+--ALTER TABLE 
+--	Preferences 
+--ADD CONSTRAINT 
+--	fk_preferences_user_connection
+--		FOREIGN KEY (user_fkey) REFERENCES UserConnection(id);
