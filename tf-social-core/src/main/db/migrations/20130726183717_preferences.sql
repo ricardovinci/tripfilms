@@ -1,12 +1,14 @@
--- -----------------------------------------------------
--- Table `test`.`Preferences`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `test`.`Preferences` (
+CREATE TABLE `Preferences` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `postOnFBTimeline` BIT(1) NULL DEFAULT NULL ,
-  `sendEmail` BIT(1) NULL DEFAULT NULL ,
-  `user_fkey` BIGINT(20) NULL DEFAULT NULL ,
-  PRIMARY KEY (`id`) )
-ENGINE = InnoDB
-AUTO_INCREMENT = 2
-DEFAULT CHARACTER SET = latin1;
+  `post_on_fb_timeline` BIT(1) NULL DEFAULT NULL ,
+  `send_email` BIT(1) NULL DEFAULT NULL ,
+  `user_fkey` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`)
+  )
+ENGINE = InnoDB;
+
+ALTER TABLE 
+	Preferences 
+ADD CONSTRAINT 
+	fk_preferences_user_connection
+		FOREIGN KEY (user_fkey) REFERENCES UserConnection(id);

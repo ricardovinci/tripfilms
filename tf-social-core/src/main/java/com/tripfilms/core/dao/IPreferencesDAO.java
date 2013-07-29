@@ -8,7 +8,7 @@ import com.tripfilms.core.be.Preferences;
 import com.tripfilms.core.be.UserConnection;
 
 public interface IPreferencesDAO extends CrudRepository<Preferences,Long> {
-	@Query("FROM Preferences p where p.mUserConnection = :pUserConnection")
+	@Query("FROM Preferences p WHERE p.mUserConnection = :pUserConnection")
 	Preferences findByUserConnection(@Param("pUserConnection") UserConnection pUserConnection); 
 }
 
