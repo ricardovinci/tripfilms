@@ -9,9 +9,9 @@ public class Comment implements Serializable, Comparable<Comment> {
 
 	private String mId;
 
-	private String message;
+	private String mMessage;
 	
-	private Date date;
+	private Date mDate;
 	
 	public String getId() {
 		return mId;
@@ -22,19 +22,19 @@ public class Comment implements Serializable, Comparable<Comment> {
 	}
 
 	public String getMessage() {
-		return message;
+		return mMessage;
 	}
 
 	public void setMessage(String pMessage) {
-		message = pMessage;
+		mMessage = pMessage;
 	}
 
 	public Date getDate() {
-		return date;
+		return mDate;
 	}
 
 	public void setDate(Date pDate) {
-		date = pDate;
+		mDate = pDate;
 	}
 
 	public int compareTo(Comment pComment) {

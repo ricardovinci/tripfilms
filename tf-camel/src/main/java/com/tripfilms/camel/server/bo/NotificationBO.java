@@ -11,8 +11,6 @@ public class NotificationBO implements INotificationBO {
 	public void notify(int pNewComments) {
 		logger.info("****** NotificationBO");
 		logger.info("Total new comments "+pNewComments);
-		
-	 //return "You have "+pNewComments+" new comments on your videos!";
 	}
 
 }
