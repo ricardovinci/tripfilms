@@ -8,21 +8,45 @@
          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
          http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
 
-<camel:camelContext id="camel-server" xmlns="http://camel.apache.org/schema/spring">
-	<camel:route>
-		<camel:from uri="jms:queue:commentsQueue"/>
-		<camel:to uri="commentsService"/>
-	</camel:route>
-</camel:camelContext>
-<broker:broker useJmx="true" persistent="false" brokerName="myBroker">
-  <broker:transportConnectors>
-    <broker:transportConnector name="vm" uri="vm://myBroker"/>
-    <broker:transportConnector name="tcp" uri="tcp://localhost:61610"/>
-  </broker:transportConnectors>
-</broker:broker>
-<bean id="jms" class="org.apache.activemq.camel.component.ActiveMQComponent">
-  <property name="brokerURL" value="vm://myBroker"/>
-</bean>
+	<!-- <camel:camelContext id="camel-server" xmlns="http://camel.apache.org/schema/spring"> 
+		<camel:route> <camel:from uri="jms:queue:commentsQueue"/> <camel:to uri="commentsService"/> 
+		</camel:route> </camel:camelContext> -->
+		<camel:camelContext id="parserContext" xmlns="http://camel.apache.org/schema/spring">
+		<camel:route>
+			<camel:from uri="jms:queue:startQueue"/> <!--  -->
+			<bean ref="com.tripfilms.camel.server.bo.IParserBO" method="parse" /> <!-- return list of videos with comments -->
+			<camel:to uri="jms:queue:commentsQueue"/>
+		</camel:route>
+	</camel:camelContext>
+
+	<camel:camelContext id="commentsContext" xmlns="http://camel.apache.org/schema/spring">
+		<camel:route>
+			<camel:from uri="jms:queue:commentsQueue"/>
+			<bean ref="com.tripfilms.camel.server.bo.ICommentBO" method="checkNewComments" /> <!-- return nmber of comments -->
+			<camel:to uri="jms:queue:notificationQueue"/>
+		</camel:route>
+	</camel:camelContext>
+	
+	<camel:camelContext id="notificationContext" xmlns="http://camel.apache.org/schema/spring">
+		<camel:route>
+			<camel:from uri="jms:queue:notificationQueue"/>
+			<bean ref="com.tripfilms.camel.server.bo.INotificationBO" method="notify" />
+		</camel:route>
+	</camel:camelContext>
+		
+	<broker:broker useJmx="true" persistent="false"
+		brokerName="myBroker">
+		<broker:transportConnectors>
+			<broker:transportConnector name="vm"
+				uri="vm://myBroker" />
+			<broker:transportConnector name="tcp"
+				uri="tcp://localhost:61610" />
+		</broker:transportConnectors>
+	</broker:broker>
+	<bean id="jms" class="org.apache.activemq.camel.component.ActiveMQComponent">
+		<property name="brokerURL" value="vm://myBroker" />
+	</bean>
+
 
 
 </beans>

@@ -1,28 +1,24 @@
 package com.tripfilms.camel.server.be;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
-public class Video implements Serializable {
+public class Video implements Serializable{
 
-	private static final long serialVersionUID = -1380048544755003141L;
-	
-	private Long mId;
-	
-	private List <Comment> mComments;
-	
-	public Video(){}
-	
-	public Video(Long pId,List <Comment> pComments){
-		this.mId = pId;
-		this.mComments = pComments;
-	}
+	private static final long serialVersionUID = 5997375600563087239L;
 
-	public Long getId() {
+	private String mId;
+	
+	private List<Comment> mComments;
+	
+	private Date mLastCommentDate;
+
+	public String getId() {
 		return mId;
 	}
 
-	public void setId(Long pId) {
+	public void setId(String pId) {
 		mId = pId;
 	}
 
@@ -33,7 +29,14 @@ public class Video implements Serializable {
 	public void setComments(List<Comment> pComments) {
 		mComments = pComments;
 	}
-	
-	
 
+	public Date getLastCommentDate() {
+		return mLastCommentDate;
+	}
+
+	public void setLastCommentDate(Date pLastCommentDate) {
+		mLastCommentDate = pLastCommentDate;
+	}
+	
+	
 }

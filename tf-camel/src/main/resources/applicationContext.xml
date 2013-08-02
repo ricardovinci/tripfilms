@@ -11,9 +11,15 @@
  <context:spring-configured />
  
  <task:annotation-driven />
-  
-	<bean id="com.tripfilms.camel.server.bo.INotifyUserBO" class="com.tripfilms.camel.server.bo.NotifyUserBO" />
+	<bean id="ScheduledComment" class="com.tripfilms.camel.server.start.ScheduledComment"></bean>  
+	<bean id="com.tripfilms.camel.server.bo.INotificationBO" class="com.tripfilms.camel.server.bo.NotificationBO"  />
+	<!-- <bean id="com.google.gson.GsonBuilder" class="com.google.gson.GsonBuilder">
+		<property name="dateFormat" value="yyyy-MM-dd'T'HH:mm:ssz"/>
+	</bean>
+	<bean id="com.google.gson.Gson" class="com.google.gson.Gson" factory-bean="com.google.gson.GsonBuilder" factory-method="create"/> -->
+	<bean id="com.tripfilms.camel.server.bo.IParserBO" class="com.tripfilms.camel.server.bo.ParserBO" />
+	<bean id="com.tripfilms.camel.server.bo.ICommentBO" class="com.tripfilms.camel.server.bo.CommentBO"/> 
 	<bean id ="com.tripfilms.camel.server.dao.IVideoDAO" class="com.tripfilms.camel.server.dao.VideoDAO"/>
-  	<bean id="commentsService" class="com.tripfilms.camel.server.bo.CommentsBO"/>
- <import resource="classpath*:camel-server.xml" />
+<!--   	<bean id="commentsService" class="com.tripfilms.camel.server.bo.CommentsBO"/> 
+ --> <import resource="classpath*:camel-server.xml" />
 </beans>

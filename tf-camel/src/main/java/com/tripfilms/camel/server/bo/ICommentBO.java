@@ -4,6 +4,6 @@ import java.util.List;
 
 import com.tripfilms.camel.server.be.Video;
 
-public interface ICommentsBO {
-	public String getComments(List<Video> videos);
+public interface ICommentBO {
+	public int checkNewComments(List<Video> videos);
 }
